@@ -35,6 +35,7 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         @if(isset($cart))
                             @forelse($cart->items as $item)
                                 <tr>
@@ -46,21 +47,20 @@
                                         <p class="product-des">Maboriosam in a tonto nesciung eget distingy
                                             magndapibus.</p>
                                     </td>
-                                    <td class="price" data-title="Price"><span>$110.00 </span></td>
+                                    <td class="price" data-title="Price"><span>${{ $item['product']->price }} </span></td>
                                     <td class="qty" data-title="Qty"><!-- Input Order -->
                                         <div class="input-group">
                                             <div class="button minus">
-                                                <button type="button" class="btn btn-primary btn-number"
-                                                        disabled="disabled"
+                                                <button type="button" data-id="{{$item['product']->id}}" class="btn btn-primary btn-number update-quantity"
                                                         data-type="minus" data-field="quant[1]">
                                                     <i class="ti-minus"></i>
                                                 </button>
                                             </div>
-                                            <input type="text" name="quant[1]" class="input-number" data-min="1"
+                                            <input type="text" id="quantity-{{$item['product']->id}}" name="quant[1]" class="input-number" data-min="1"
                                                    data-max="100"
-                                                   value="1">
+                                                   value="{{ $item['quantity'] }}">
                                             <div class="button plus">
-                                                <button type="button" class="btn btn-primary btn-number"
+                                                <button type="button" data-id="{{$item['product']->id}}" class="btn btn-primary btn-number update-quantity"
                                                         data-type="plus"
                                                         data-field="quant[1]">
                                                     <i class="ti-plus"></i>
@@ -69,7 +69,7 @@
                                         </div>
                                         <!--/ End Input Order -->
                                     </td>
-                                    <td class="total-amount" data-title="Total"><span>$220.88</span></td>
+                                    <td class="total-amount" id="price-{{$item['product']->id}}" data-title="Total"><span>{{ $item['price'] }}</span></td>
                                     <td class="action" data-title="Remove"><a href="#"><i
                                                 class="ti-trash remove-icon"></i></a>
                                     </td>
@@ -113,7 +113,7 @@
                                 <div class="col-lg-4 col-md-7 col-12">
                                     <div class="right">
                                         <ul>
-                                            <li>Cart Subtotal<span>{{ $cart->totalPrice }}</span></li>
+                                            <li>Cart Subtotal<span id="cart-subtotal">{{ $cart->totalPrice }}</span></li>
                                             <li>Shipping<span>Free</span></li>
                                             <li>You Save<span>$20.00</span></li>
                                             <li class="last">You Pay<span>$310.00</span></li>

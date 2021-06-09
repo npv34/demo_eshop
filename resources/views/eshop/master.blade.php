@@ -70,7 +70,9 @@
 <!-- /End Footer Area -->
 
 <!-- Jquery -->
-<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+{{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
 <script src="{{ asset('js/jquery-migrate-3.0.0.js')}}"></script>
 <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 <!-- Popper JS -->
@@ -93,5 +95,6 @@
 <script src="{{ asset('js/onepage-nav.min.js') }}"></script>
 <script src="{{asset('js/easing.js')}}"></script>
 <script src="{{ asset('js/active.js') }}"></script>
+<script src="{{ asset('js/my.js') }}"></script>
 </body>
 </html>

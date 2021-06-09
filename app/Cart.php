@@ -32,7 +32,7 @@ class Cart
             $storeItem = $this->items[$product->id];
         }
 
-        $storeItem['quantity']++;
+        $storeItem['quantity'] += 1;
         $storeItem['money'] += $product->price;
 
 
@@ -51,5 +51,22 @@ class Cart
         }
 
         $this->items = $currentItem;
+    }
+
+    public function updateQuantity($product, $newQuantity) {
+
+        $currentItemUpdate = $this->items[$product->id];
+
+        $changeQuantity = $newQuantity - $currentItemUpdate['quantity'];
+        $newQuantityProduct = $currentItemUpdate['quantity'] + $changeQuantity;
+        $currentItemUpdate['price'] = $newQuantityProduct *  $product->price;
+        $currentItemUpdate['quantity'] = $newQuantityProduct;
+
+        $this->items[$product->id] = $currentItemUpdate;
+
+        // thay doi trong gio hang
+        $this->totalQuantity += $changeQuantity;
+        $this->totalPrice += $changeQuantity *  $product->price;
+
     }
 }

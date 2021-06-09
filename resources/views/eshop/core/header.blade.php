@@ -79,11 +79,11 @@
                             <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                         </div>
                         <div class="sinlge-bar shopping">
-                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{  $cart->totalQuantity }}</span></a>
+                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{  $cart->totalQuantity ?? 0 }}</span></a>
                             <!-- Shopping Item -->
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
-                                    <span>{{$cart->totalQuantity}} Items</span>
+                                    <span>{{$cart->totalQuantity ?? 0}} Items</span>
                                     <a href="#">View Cart</a>
                                 </div>
                                 <ul class="shopping-list">

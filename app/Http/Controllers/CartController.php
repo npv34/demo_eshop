@@ -10,6 +10,7 @@ class CartController extends Controller
 {
     function index()
     {
+
         $cart = session('cart');
         return view('eshop.cart.index', compact('cart'));
     }
@@ -24,6 +25,22 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
+    public function updateQuantityProduct(Request $request, $productId) {
+        $product = Product::findOrFail($productId);
+        $oldCart = session()->get('cart');
+        $newCart = new Cart($oldCart);
+        $newCart->updateQuantity($product, $request->newQuantity);
+        session()->put('cart', $newCart);
+
+        $data = [
+            'status' => 'success',
+            'message' => 'Cap nhat gio hanh thanh cong',
+            'cart' => session('cart')
+        ];
+
+        return response()->json($data);
+
+    }
 
 
 }

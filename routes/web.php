@@ -20,5 +20,6 @@ Route::get('/', [HomeController::class,'index'])->name('home.index');
 Route::prefix('cart')->group(function () {
     Route::get('/',[CartController::class, 'index'])->name('cart.index');
     Route::get('/add-to-cart/{productId}',[CartController::class, 'addToCart'])->name('cart.addToCart');
+    Route::get('/update/{productId}',[CartController::class, 'updateQuantityProduct'])->name('cart.updateQuantityProduct');
 
 });
