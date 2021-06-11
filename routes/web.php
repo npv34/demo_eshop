@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,15 @@ Route::prefix('cart')->group(function () {
     Route::get('/add-to-cart/{productId}',[CartController::class, 'addToCart'])->name('cart.addToCart');
     Route::get('/update/{productId}',[CartController::class, 'updateQuantityProduct'])->name('cart.updateQuantityProduct');
 
+});
+
+Route::get('admin/login', [AuthController::class, 'showFormLogin'])->name('auth.showFormLogin');
+Route::post('admin/login', [AuthController::class, 'login'])->name('auth.login');
+
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Admin\HomeController::class,'index'])->name('admin.index');
+
+    Route::get('logout', [AuthController::class,'logout'])->name('auth.logout');
+    Route::get('change-password', [AuthController::class,'changePassword'])->name('auth.changePassword');
 });
